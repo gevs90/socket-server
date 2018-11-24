@@ -22,4 +22,18 @@ router.post('/messages', (request: Request, response: Response) => {
     });
 });
 
+router.post('messages/:id', (request: Request, response: Response) => {
+    const body = request.body.body;
+    const from = request.body.from;
+    const id   = request.body.params.id;
+
+    response.json({
+        ok: true,
+        body,
+        from,
+        id
+    });
+});
+
+
 export default router;

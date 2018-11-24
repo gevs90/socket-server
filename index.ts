@@ -6,7 +6,7 @@ import cors from 'cors';
 
 
 
-const server = new Server();
+const server = Server.instance;
 
 
 // BodyParser
@@ -14,11 +14,12 @@ const server = new Server();
 server.app.use(bodyParser.urlencoded({extended: true }));
 server.app.use(bodyParser.json());
 
+// Cors
+server.app.use(cors({ origin: true, credentials: true }));
+
 // Rutas of services
 server.app.use('/', router);
 
-// Cors
-server.app.use(cors({ origin: true, credentials: true }));
 
 server.start(() => {
     console.log(`Servidor corriendo en el puerto ${ server.port }`);
